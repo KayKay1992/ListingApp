@@ -1,0 +1,4 @@
+in setting up our project we added packageManager with the right version and also set overide for react and react-dom this will make sure we are using the latest version across all the packages in the project,
+Please note dont delete your node modules.
+Now lets run npm run dev to start our project.
+Boom our project is live we can now start developing it.
