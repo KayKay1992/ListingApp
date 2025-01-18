@@ -17,7 +17,7 @@ const Navbar = async() => {
           <Link href='/'>
           <Image src='/logo.png' alt='logo' width={60} height={30} className='rounded-full mx-4'/>
           <div className=''>
-          <span className='text-2xl'>LISTING</span>
+          <span className='text-1xl'>LISTING</span>
           <span className='text-pink-500'>app</span>
           </div>
           </Link>
