@@ -12,13 +12,13 @@ const Navbar = async() => {
   return (
    
     
-    <header className='px-5 py-1 bg-orange-700 shadow-sm font-work-sans'>
+    <header className='px-5 py-1 bg-white shadow-sm font-work-sans'>
         <nav className='flex justify-between items-center'>
           <Link href='/'>
           <Image src='/logo.png' alt='logo' width={60} height={30} className='rounded-full mx-4'/>
           <div className=''>
           <span className='text-2xl'>LISTING</span>
-          <span className='text-yellow-200'>app</span>
+          <span className='text-pink-500'>app</span>
           </div>
           </Link>
           <div className='flex items-center gap-5 text-black'>
@@ -29,7 +29,7 @@ const Navbar = async() => {
                   </Link>
                   <form action={async () => {
                     "use server"
-                    await signOut({ redirectTo: "http://localhost"})
+                    await signOut({ redirectTo: "/"})
                   }}>
                     <button type='submit'>Logout</button>
                   </form>

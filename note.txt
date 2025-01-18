@@ -1,23 +1,4 @@
-Implementing Authentication using Auth.js or nextAuth.
-To install the package go to browser and search auth.js 
-select nextjs, select npm and copy the installation command which is 
-npm install next-auth@beta and run it in your terminal.
-
-Next we set up the environment variables by setting up the auth secret, so we copy the next command which is npx auth secret and run it in your terminal. this will create a .env.local file which holds the auth secret 
-
-Next we configure, by creating the auth.js config file and object. this is where you control the behaviour of the library and specify  custom authentication logic, adapters, etc. so we creaated an auth.ts file in our root folder.
-
-Next we have to add a route handler under app/api/auth/[...nextauth]/route.ts and we have to make it a new dynammic route
-
-Next we have to set up the authentication method: that is we have to fill up our providers array, so we head to authentication, then we go to Oauth we can use anyone but we will use github, you have to enter your application callback url.
-setting it up from scratch.
-so from the side bar select providers and choose github, then you can click on creating an oauth app. In creating an oauth app you have to go to settings=> developer settings=> oauth app => click new oauth app. if you have not created an oauth app before the button will read register new application.
-In application name type the name of your app. in homepage url, type the full url to your app website. in description describe your app, in authorizations callback url type the callback url of your app.
-practical 
-a. head over to github.com =. to your profile=> settings => developer setting => Oauth apps => New Oauth apps => feel the form and register your application. 
-after registering our application we copy the client id and to our .env.local file where we will save it as AUTH_GITHUB_ID, Then we generate a client secret and copy it immediately because we wont be seeing after. we still go to .env file save the generated secret as auth_Github_secret. then we also uploaded our logo.
-then we go back to our auth configuration and copy it, using it to update our auth.ts file.by adding github provider right within it.
-
-how do we now make it work? 
-we go over to our homepage(page.tsx) and remove everythiing, we restructured our folders, we created a root folder and we move our page.tsx into the root folder and created new layout for the for the homepage. the layout holds our navbar and holds the children props.
-Then we created a component folder and a navbar file this is where we configure our navbar. we remove everything in public folder and import our logo.
+Theming and Fonts
+Every website has a unique theme and font. to ensure this we have to set up our tailwind config. we set up our styless including theme, font, colors etc.
+we then install a package that will be used to animate our project with this command npm i tailwindcss-animate, along tailwindcss-animate we still have tailwindcss typography which helps us to further play with fonts. to install tailwind typography run the following command npm install @tailwindcss/typography. then reload your project.
+then we set our primary layout of our application to allow for tailwindcss theming, also set up our local fonts to make you not to depend on external services like google fonts 
