@@ -1,11 +1,7 @@
-HERO SECTION, SETTING GLOBAL STYLES BY CREATING UTILITY CLASS AND INSTALLING SHADCN
+SEARCH FORM:
 
-We can create a utility class for heading in hero session because we will need to reuse it in many pages. we did this in globals.css file  using @layer utilities. So we set up our globals.css and add some other utility classes. 
+We created a new component in component fffolder which we called searchForm.tsx, where we created a functional component for search form and exported while we imported it in our homepage inside the hero section.
 
-Integrating shadcn in our app.
-shadcn is a collection of beautifully designed, accessible, and customizable react components that you can use tto build modern web applications with Nextjs. with shadcn you can quickly and easily create user interfaces that are both stylish and functional.
-go to the shadcn site and for cli. the init command is used to initalise configuration and dependencies for a new project. the init command installs dependencies so run the init command which is npx shadcn@latest init in your terminal.
-you need a strong network or it will give econnreset error. 
-After installing shadcn your tailwind.config and globals.css will be altered so go back to those files and reset it as it was.
+the search form which is a server side rendering has a button interactivity which is client side rendering so we created separate component for the form reset button. we converted this component to client side by alling the use client op top the component.
 
-Then go to page.tsx homepage and continue setting your heropage using the classname from your globals.css file.
+To turn our normal button to shadcn button we ran this command npx shadcn@latest add button. when we installed this component it created a separate component folder outside the outside the app folder which is the right thing. so we moved every component file in our old component folder to the new one created. and got rid of the old component folder. then we updated the path. 
