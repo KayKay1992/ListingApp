@@ -1,7 +1,10 @@
-SEARCH FORM:
+All startups and Startup card.
 
-We created a new component in component fffolder which we called searchForm.tsx, where we created a functional component for search form and exported while we imported it in our homepage inside the hero section.
+We created a startup card with a dummy data, 
+we made the date dynamic by craeting the formDate function in utils.ts file and passing it to the statup card component.
 
-the search form which is a server side rendering has a button interactivity which is client side rendering so we created separate component for the form reset button. we converted this component to client side by alling the use client op top the component.
+Because we will be using a placeholder in our image Nextjs will be throwing and error because the site is not authorised so we will go to next.config.ts to set up our image config.
 
-To turn our normal button to shadcn button we ran this command npx shadcn@latest add button. when we installed this component it created a separate component folder outside the outside the app folder which is the right thing. so we moved every component file in our old component folder to the new one created. and got rid of the old component folder. then we updated the path. 
+Inthe Button we used asChild prop because we want to use a link inside the button.
+
+We have been able to create our startupCard ui but with dummy data the next thing is to be able to add a startup card. we will do this using sanity first we will set it up.
