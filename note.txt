@@ -1,10 +1,25 @@
-All startups and Startup card.
+SANITY SETUP",
 
-We created a startup card with a dummy data, 
-we made the date dynamic by craeting the formDate function in utils.ts file and passing it to the statup card component.
+YOU CAN leverage on their api to build a operating system. You have the studio that is fully customisable content that mirrors ypour business and unleashescreativity. the studio is build on top of  powerful apis that allow you to customise the way you create and manage content. the store lake then stores it for you.Sanity is neatly integrated with nextjs  everything works well
+To set up sanity for your project
+go to sanity website, click start building, created an account. After creating your project, copy the create sanity command and run it in your terminal. 
+After installing it then signing with the authentication you used while creating an account with sanity.
+Go back to terminal after loggin in they will ask you would you like to add configuration type y i.e select yes. select yes for typescript if you are using typescript. template studio yes. route is ok /studio. clean schema yes, add project Id yes. hit enter to install sanity. Boom! sanity has been integrated into our project. 
+Next, to enjoy the latest features of the api we have to install the latest version, so  we run this command in the terminal to install the latest version npm install next-sanity@canary
 
-Because we will be using a placeholder in our image Nextjs will be throwing and error because the site is not authorised so we will go to next.config.ts to set up our image config.
+Now if you want to test sanity studio in your browser by adding /studio route to the localhost you will have error due to --turbopark in script package.json file. so go to the script at package.json file and remove --turbopark. stop your project and restart it.
 
-Inthe Button we used asChild prop because we want to use a link inside the button.
+Exploring the new files that have been created for use
+Sanity.cli.ts: this is a config file that contains your projectId and Dataset.
+sanity.config.ts: this is a simple configuration file used for sanity studio, you set the project path and connect to specific project id, dataset, schema and add some specific plugins.
 
-We have been able to create our startupCard ui but with dummy data the next thing is to be able to add a startup card. we will do this using sanity first we will set it up.
+in sanity folder, there is another folder lib, in it you have client.ts, this is sanity read client for fetching data querries.
+
+image.ts: image url builder for images uploaded on sanity.
+
+SchemaType folder contains all the structure of the schema but we started on clean slate so we have only index.ts, so this is where we create our own schema and export them so that our entire application can use it.
+
+Again your sanity will have a data set error until you also add NEXT_PUBLIC_SANITY_PROJECT_ID = "copy your project id from sanity and paste here"
+NEXT_PUBLIC_SANITY_DATASET = "copy your project id from sanity and paste here" to your .env.local file.
+
+to test your schema studio you can restart your project and move to this route localhost3000/studio for example and make sure you logged in with details you used to create sanity account.

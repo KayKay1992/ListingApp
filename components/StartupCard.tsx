@@ -23,7 +23,7 @@ function StartupCard({ post }: { post: StartupTypeCard }) {
                 {name}
             </p>
             </Link>
-            <Link href={`/startup/${_id}`}>\
+            <Link href={`/startup/${_id}`}>
             <h3 className="text-26-semibold line-clamp-1">
                 {title}
             </h3>
