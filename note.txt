@@ -1,25 +1,17 @@
-SANITY SETUP",
+CREATING SANITY SCHEMA
+for our structure we need to store startup submitted by a user which contains title , slug(unique name), author( the author will be authenticated through github, which ,means we will get every infor from github), views, description, category, image and pitch. We then need to group those startup in a kind of playist. 
+We first create a schema for the author.
+we created a new schema type called author.ts. 
+so you define the author. this is where we will create our author. after that we will we will use it in index.ts in the array and importing it. 
+then we structure it in structure.ts file where we will list the things that sanity provide.
 
-YOU CAN leverage on their api to build a operating system. You have the studio that is fully customisable content that mirrors ypour business and unleashescreativity. the studio is build on top of  powerful apis that allow you to customise the way you create and manage content. the store lake then stores it for you.Sanity is neatly integrated with nextjs  everything works well
-To set up sanity for your project
-go to sanity website, click start building, created an account. After creating your project, copy the create sanity command and run it in your terminal. 
-After installing it then signing with the authentication you used while creating an account with sanity.
-Go back to terminal after loggin in they will ask you would you like to add configuration type y i.e select yes. select yes for typescript if you are using typescript. template studio yes. route is ok /studio. clean schema yes, add project Id yes. hit enter to install sanity. Boom! sanity has been integrated into our project. 
-Next, to enjoy the latest features of the api we have to install the latest version, so  we run this command in the terminal to install the latest version npm install next-sanity@canary
+we created startup schema too and pass it to index and structure files. in startup.ts file we made use of a markdown type in the last object of the array, that means we will need to install a markdown parkage by running  npm install sanity-plugin-markdown
+after installing go to sanity.config file add it at the plugins as a function make sure u import it from sanity-plugin-markdown.
 
-Now if you want to test sanity studio in your browser by adding /studio route to the localhost you will have error due to --turbopark in script package.json file. so go to the script at package.json file and remove --turbopark. stop your project and restart it.
+then we go to layout.tsx in app folder to add all the general configuration. what we did was to import a styling css from this link import 'easymde/dist/easymde.min.css'; this will make sure our editor looks great.
 
-Exploring the new files that have been created for use
-Sanity.cli.ts: this is a config file that contains your projectId and Dataset.
-sanity.config.ts: this is a simple configuration file used for sanity studio, you set the project path and connect to specific project id, dataset, schema and add some specific plugins.
+run  npm install easymde to install easymde so that the styles so that the styles can works properly.
 
-in sanity folder, there is another folder lib, in it you have client.ts, this is sanity read client for fetching data querries.
+Now go to localhost3000/studio. You can create an author directly  from your studio.
 
-image.ts: image url builder for images uploaded on sanity.
-
-SchemaType folder contains all the structure of the schema but we started on clean slate so we have only index.ts, so this is where we create our own schema and export them so that our entire application can use it.
-
-Again your sanity will have a data set error until you also add NEXT_PUBLIC_SANITY_PROJECT_ID = "copy your project id from sanity and paste here"
-NEXT_PUBLIC_SANITY_DATASET = "copy your project id from sanity and paste here" to your .env.local file.
-
-to test your schema studio you can restart your project and move to this route localhost3000/studio for example and make sure you logged in with details you used to create sanity account.
+we have been able to create an author and a startup in our studio and now how can we show it in our website.?

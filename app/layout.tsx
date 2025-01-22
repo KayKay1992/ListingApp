@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from 'next/font/local'
 // import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+// import 'easymde/dist/easymde.min.css';
+import "easymde/dist/easymde.min.css";
 
 const workSans = localFont({
   src: [
