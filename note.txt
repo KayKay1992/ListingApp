@@ -1,36 +1,19 @@
-FETCHING DATA AND TYPE SAFETY: FETCHIND DATA FROM SANITY
+Cache and live API W/Next.js: Render your fetched data without reloading your app
 
-For you to be able to fetch data from studio you have to use querylanguage (groq); groq is a sanity open source query language. With groq you can describe exactly what information your application needs. 
+in client.ts when where setting up sanity client we set useCdn to true which means the page rerenders every 60secs even when you update and reload you wont see it till 60sec. that means sanity will cache content for 60s and revalidate the content after 60s this is ISR (Incremental Static Regeneration). create a new startup card in your studio and reload your site it can only appear after 60s.
 
-how it works.
-navigate to your studio localhost3000/studio and open the vision tab, you will see query and params. * query means get everything.
-*[]= this will fetch the first property.
-*[_type== 'startup'] this will fetch all startup
+Now to fetch your data immediately  when you reload without wating for 60s we need to go to client.ts and set the useCdn to false.
 
-to be more specific about bthe particular data to fetch we can run a query like this:
- *[_type == 'startup' && defined(slug.current)]{
-  _id, title, slug, _createdAt, author, views, description, category,image
-} now we are requesting for 9 properties.
+Now we can get our data immediately/live without needing to refresh the page. for this we use sanity live content api allows you to deliver live dynamic experience to your users.
+tO IMPLEMENT IT IN OUR application 
+1. we will run npm install server-only command to install this package which means a specific module can only run in a server component.
+2. Next we will create a new utility file within sanity lib, we can call it live.ts. this is where we import the server only package we installed and also import defineLive and also client.
+3. then we go to .env.local and change the sanity version to 
+NEXT_PUBLIC_SANITY_API_VERSION = "vX" this will give you the latest version.
+4. Then go to homepage which is page.tsx and make one change to the sanity fetch. 
+we can fetch in this structure.
+const {data: posts} = await sanityFetch(options: {query: STARTUPS_QUERY})
 
-Now how can we get additional information about the author of the post? you fetch it like this:
-*[_type == 'startup' && defined(slug.current)]{
-  _id, title, slug, _createdAt,
-    author ->{
-      _id, name, slug, image, bio
-    },
-    views, description, category,image
-}
+5. To use the sanityLive variable which we called in live.ts file we will go to the bottom of page.tsx and call a self closing  sanityLive component and import it.
 
-we wont be making call from sanity studio vision rather we will do that in sanity folder, lib folder there we create a new file queries.ts, this is where  we will write our queries which we will use to fetch the data.
-
-after writing our query how can we now fetch it? we go to homepage page.tsx
-
-we are yet to have startupTypeCard, for sanity tohave access to all type of typescript we will run an additional package npx sanity@latest schema extract --path=./sanity/extract.json
-next we create a new file in the root of our application called sanity-typegen.json, configure it. 
-then run npx sanity schema extract, this will create a schema.json file in the root of our application. 
-Then run npx sanity@latest typegen generate typescript types for schemas.
-
-Then we go to package.json to add a few new script.
-run npm run typegen to generate typescript types for schemas.
-
-Bug: Image is not rendered we will check it later to fix the bug.
+Now we are ready to test it out, by creating another startup card and watch it as it change immediately without refreshing.
