@@ -1,6 +1,7 @@
 import { UserIcon } from "lucide-react";
+import { defineType } from "sanity";
 
-export default {
+export default defineType({
   name: "author",
   title: "Author",
   type: "document",
@@ -25,6 +26,7 @@ export default {
     {
       name: "image",
       type: "url",
+     
     },
     {
       name: "bio",
@@ -36,4 +38,4 @@ export default {
       title: "name",
     },
   },
-};
+});

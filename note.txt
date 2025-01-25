@@ -1,17 +1,36 @@
-CREATING SANITY SCHEMA
-for our structure we need to store startup submitted by a user which contains title , slug(unique name), author( the author will be authenticated through github, which ,means we will get every infor from github), views, description, category, image and pitch. We then need to group those startup in a kind of playist. 
-We first create a schema for the author.
-we created a new schema type called author.ts. 
-so you define the author. this is where we will create our author. after that we will we will use it in index.ts in the array and importing it. 
-then we structure it in structure.ts file where we will list the things that sanity provide.
+FETCHING DATA AND TYPE SAFETY: FETCHIND DATA FROM SANITY
 
-we created startup schema too and pass it to index and structure files. in startup.ts file we made use of a markdown type in the last object of the array, that means we will need to install a markdown parkage by running  npm install sanity-plugin-markdown
-after installing go to sanity.config file add it at the plugins as a function make sure u import it from sanity-plugin-markdown.
+For you to be able to fetch data from studio you have to use querylanguage (groq); groq is a sanity open source query language. With groq you can describe exactly what information your application needs. 
 
-then we go to layout.tsx in app folder to add all the general configuration. what we did was to import a styling css from this link import 'easymde/dist/easymde.min.css'; this will make sure our editor looks great.
+how it works.
+navigate to your studio localhost3000/studio and open the vision tab, you will see query and params. * query means get everything.
+*[]= this will fetch the first property.
+*[_type== 'startup'] this will fetch all startup
 
-run  npm install easymde to install easymde so that the styles so that the styles can works properly.
+to be more specific about bthe particular data to fetch we can run a query like this:
+ *[_type == 'startup' && defined(slug.current)]{
+  _id, title, slug, _createdAt, author, views, description, category,image
+} now we are requesting for 9 properties.
 
-Now go to localhost3000/studio. You can create an author directly  from your studio.
+Now how can we get additional information about the author of the post? you fetch it like this:
+*[_type == 'startup' && defined(slug.current)]{
+  _id, title, slug, _createdAt,
+    author ->{
+      _id, name, slug, image, bio
+    },
+    views, description, category,image
+}
 
-we have been able to create an author and a startup in our studio and now how can we show it in our website.?
+we wont be making call from sanity studio vision rather we will do that in sanity folder, lib folder there we create a new file queries.ts, this is where  we will write our queries which we will use to fetch the data.
+
+after writing our query how can we now fetch it? we go to homepage page.tsx
+
+we are yet to have startupTypeCard, for sanity tohave access to all type of typescript we will run an additional package npx sanity@latest schema extract --path=./sanity/extract.json
+next we create a new file in the root of our application called sanity-typegen.json, configure it. 
+then run npx sanity schema extract, this will create a schema.json file in the root of our application. 
+Then run npx sanity@latest typegen generate typescript types for schemas.
+
+Then we go to package.json to add a few new script.
+run npm run typegen to generate typescript types for schemas.
+
+Bug: Image is not rendered we will check it later to fix the bug.
