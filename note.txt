@@ -1,11 +1,33 @@
-Real Time Search with Url Query Params.
-Currently the search is not working Now lets make the search work.
-what what we will do is to retrieve the query params from the search and fetch it.
-!!!!!!!! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Understanding Partial Pre-rendering : To get started with our startup details page
 
-1. Firstly, at page.tsx we decalred a variable called params where we checked for yhe query and in fetching the post data we passed the param as the second argument.
+To get started with our startup details page we created a new folder in root app folder, startup folder, inside the startup folder we created a dynamic folder [id], in this dynamic folder we created a page.tsx file. this is d page we will create our details page. you can run rfce, then in your browser click read more button you will be taken to the details page.
 
-2. in  queries.ts we modified the our query to check if search exists, or search matches the category or author name or title.
+We will get the id and use the id to fetch the details about that startup. we write our query to get the id details in /studio/visions. the query should look like this   *[_type == 'startup' && _id ==  $id] [0]{
+  _id,
+   title,
+    slug,
+    _createdAt,
+    author ->{
+      _id, name,username, image, bio
+    },
+    views, 
+    description,
+     image,
+      category,
+    pitch,
+}
+this query will fetch every details about the id startup. 
 
-Now test it search for startups
+write and export the query in your queries.ts file.
+
+REndering Strategies: partial prerendering in action. this enable you to combine static and dynamic components together in the same route.
+to integrate it in our app.
+a. go to next.config.ts file, then add an experimental tag and in there set ppr to incremental then turn on some additionals devIndicators
+
+b.then we go back to our page.tsx file for startup details and export the experimental ppr setting it to true.
+
+bug: if error is coming when you want to test it due to next update then you can update your next to canary usimg this command npm i next@canary
+
+Next we will look at startup details page.
+
 
