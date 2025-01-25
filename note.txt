@@ -1,19 +1,11 @@
-Cache and live API W/Next.js: Render your fetched data without reloading your app
+Real Time Search with Url Query Params.
+Currently the search is not working Now lets make the search work.
+what what we will do is to retrieve the query params from the search and fetch it.
+!!!!!!!! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-in client.ts when where setting up sanity client we set useCdn to true which means the page rerenders every 60secs even when you update and reload you wont see it till 60sec. that means sanity will cache content for 60s and revalidate the content after 60s this is ISR (Incremental Static Regeneration). create a new startup card in your studio and reload your site it can only appear after 60s.
+1. Firstly, at page.tsx we decalred a variable called params where we checked for yhe query and in fetching the post data we passed the param as the second argument.
 
-Now to fetch your data immediately  when you reload without wating for 60s we need to go to client.ts and set the useCdn to false.
+2. in  queries.ts we modified the our query to check if search exists, or search matches the category or author name or title.
 
-Now we can get our data immediately/live without needing to refresh the page. for this we use sanity live content api allows you to deliver live dynamic experience to your users.
-tO IMPLEMENT IT IN OUR application 
-1. we will run npm install server-only command to install this package which means a specific module can only run in a server component.
-2. Next we will create a new utility file within sanity lib, we can call it live.ts. this is where we import the server only package we installed and also import defineLive and also client.
-3. then we go to .env.local and change the sanity version to 
-NEXT_PUBLIC_SANITY_API_VERSION = "vX" this will give you the latest version.
-4. Then go to homepage which is page.tsx and make one change to the sanity fetch. 
-we can fetch in this structure.
-const {data: posts} = await sanityFetch(options: {query: STARTUPS_QUERY})
+Now test it search for startups
 
-5. To use the sanityLive variable which we called in live.ts file we will go to the bottom of page.tsx and call a self closing  sanityLive component and import it.
-
-Now we are ready to test it out, by creating another startup card and watch it as it change immediately without refreshing.
