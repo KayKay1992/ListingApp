@@ -1,33 +1,16 @@
-Understanding Partial Pre-rendering : To get started with our startup details page
+Startup details page proper.
 
-To get started with our startup details page we created a new folder in root app folder, startup folder, inside the startup folder we created a dynamic folder [id], in this dynamic folder we created a page.tsx file. this is d page we will create our details page. you can run rfce, then in your browser click read more button you will be taken to the details page.
+we started by creating a section at page.tsx for product details at dynamic id.
+after creating our startup details in creating our pitch we installed markdown with this command npm install markdown-it it converts your pitch to html format to render it in ui.
+once it get installed we get parsed markeddown content.
 
-We will get the id and use the id to fetch the details about that startup. we write our query to get the id details in /studio/visions. the query should look like this   *[_type == 'startup' && _id ==  $id] [0]{
-  _id,
-   title,
-    slug,
-    _createdAt,
-    author ->{
-      _id, name,username, image, bio
-    },
-    views, 
-    description,
-     image,
-      category,
-    pitch,
-}
-this query will fetch every details about the id startup. 
+markdown might be complaining use this command to force the correct type  npm i --save-dev @types/markdown-it
 
-write and export the query in your queries.ts file.
+we import markdown and initialise it then we set it as html
 
-REndering Strategies: partial prerendering in action. this enable you to combine static and dynamic components together in the same route.
-to integrate it in our app.
-a. go to next.config.ts file, then add an experimental tag and in there set ppr to incremental then turn on some additionals devIndicators
+Now to render ppr content .i.e a dynamic content that changes we will use suspense from react to render d skeleton which we will import from shadcn  we will install the package with npx shadcn@latest add skeleton
 
-b.then we go back to our page.tsx file for startup details and export the experimental ppr setting it to true.
+for the dynamic ping to indicate the number of views we  created a component view .tsx which we used inside the details page.tsx then we created another componenet for the dynamic ping which is ping.tsx which we used inside view.tsx. 
 
-bug: if error is coming when you want to test it due to next update then you can update your next to canary usimg this command npm i next@canary
-
-Next we will look at startup details page.
-
+to get the current number of views we have to get a separate query from sanity for it. we then write the query in queries.ts
 

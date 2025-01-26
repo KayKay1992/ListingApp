@@ -19,7 +19,7 @@ export default async function Home({
 
   const {data: posts} = await sanityFetch({query: STARTUPS_QUERY, params: params})
 
-  console.log(JSON.stringify(posts, null, 2));
+  // console.log(JSON.stringify(posts, null, 2));
 
   // const posts = [{
   //   _createdAt: new Date(),
