@@ -1,16 +1,16 @@
-Startup details page proper.
+SANITY WRITE CLIENT: using it to understand how to use ppr
 
-we started by creating a section at page.tsx for product details at dynamic id.
-after creating our startup details in creating our pitch we installed markdown with this command npm install markdown-it it converts your pitch to html format to render it in ui.
-once it get installed we get parsed markeddown content.
+we have to sanity write client to allow users perfom write activities. for this we need to generate a token with write permission through the sanity manage website .
 
-markdown might be complaining use this command to force the correct type  npm i --save-dev @types/markdown-it
+first go to sanity.io/manage for navigate to the particular project, click on api, click on token, click on add token, give your token a name like create and update startup, then select read and write access to all datasets for editors not viewers and save. 
 
-we import markdown and initialise it then we set it as html
+copy the token and set it in your .env.local file. 
+now go to env.ts in sanity folder and also export const token make it equal to process.env.SANITY_WRITE_TOKEN
 
-Now to render ppr content .i.e a dynamic content that changes we will use suspense from react to render d skeleton which we will import from shadcn  we will install the package with npx shadcn@latest add skeleton
+Then go to lib in sanity folder and create a new file write-client.ts file, we export write-client.ts and configured with the token and we also import server only because it is going to run only on server.
 
-for the dynamic ping to indicate the number of views we  created a component view .tsx which we used inside the details page.tsx then we created another componenet for the dynamic ping which is ping.tsx which we used inside view.tsx. 
+UPDATE THE NUMBER OF views
+then we go to view component and await the writeClient patching the id as update, setting the current number of views and commiting it.
 
-to get the current number of views we have to get a separate query from sanity for it. we then write the query in queries.ts
+unstable after functionality: this allows you to schedule work to be executed after a response is finished. we use this functionality to update the views in the  background without blocking the ui. in view componnet we will import unstable_after as asfter from 'next/server'. then wrap the after writeClient into server and set it into its own async 
 
